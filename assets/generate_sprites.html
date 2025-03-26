@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gerador de Sprites</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+            margin: 10px;
+            background-color: #f0f0f0;
+        }
+        body {
+            background-color: white;
+            padding: 20px;
+        }
+        .controls {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="spriteCanvas" width="160" height="40"></canvas>
+    <div class="controls">
+        <button onclick="drawPintinho()">Desenhar Pintinho</button>
+        <button onclick="drawGalinha()">Desenhar Galinha</button>
+        <button onclick="drawGalo()">Desenhar Galo</button>
+        <button onclick="drawObstaculo()">Desenhar Obstáculo</button>
+        <button onclick="clearCanvas()">Limpar Canvas</button>
+    </div>
+    <div class="controls">
+        <button onclick="saveAsPNG('pintinho.png')">Salvar Pintinho</button>
+        <button onclick="saveAsPNG('galinha.png')">Salvar Galinha</button>
+        <button onclick="saveAsPNG('galo.png')">Salvar Galo</button>
+        <button onclick="saveAsPNG('obstaculo.png')">Salvar Obstáculo</button>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('spriteCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function clearCanvas() {
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function drawPintinho() {
+            clearCanvas();
+            // Corpo
+            ctx.fillStyle = '#FFD700';
+            ctx.fillRect(10, 10, 20, 20);
+            
+            // Bico
+            ctx.fillStyle = '#FFA500';
+            ctx.fillRect(25, 15, 10, 5);
+        }
+
+        function drawGalinha() {
+            clearCanvas();
+            // Corpo
+            ctx.fillStyle = '#FFD700';
+            ctx.fillRect(10, 10, 25, 25);
+            
+            // Bico
+            ctx.fillStyle = '#FFA500';
+            ctx.fillRect(30, 20, 12, 6);
+        }
+
+        function drawGalo() {
+            clearCanvas();
+            // Corpo
+            ctx.fillStyle = '#FFD700';
+            ctx.fillRect(10, 10, 30, 30);
+            
+            // Bico
+            ctx.fillStyle = '#FFA500';
+            ctx.fillRect(35, 25, 15, 8);
+
+            // Crista
+            ctx.fillStyle = '#FF0000';
+            ctx.fillRect(15, 5, 20, 10);
+        }
+
+        function drawObstaculo() {
+            clearCanvas();
+            ctx.fillStyle = '#333';
+            ctx.fillRect(0, 0, 30, 50);
+        }
+
+        function saveAsPNG(filename) {
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        // Limpar canvas inicialmente
+        clearCanvas();
+    </script>
+</body>
+</html> 
